@@ -1,25 +1,6 @@
-describe('<AttendanceUpdate />', () => {
+describe('<Login />', () => {
   const baseUrl = Cypress.env('host')
   const apiServer = Cypress.env('api_server')
-
-  it('Should redirect to /atendimentos after login', () => {
-    cy.intercept('GET', `${apiServer}/attendances/`, {}).as('attendances')
-    cy.intercept('GET', `${apiServer}/attendance-statuses/`, {}).as(
-      'attendanceStatuses'
-    )
-
-    cy.visit(`${baseUrl}/login`)
-    cy.login()
-
-    cy.location('pathname').should('include', '/atendimentos')
-  })
-
-  it('Should not redirect to /attendances if credentials are invalid', () => {
-    cy.visit(`${baseUrl}/login`)
-    cy.loginInvalid()
-
-    cy.location('pathname').should('include', '/login')
-  })
 
   it('Should show snackbar', () => {
     cy.visit(`${baseUrl}/login`)
