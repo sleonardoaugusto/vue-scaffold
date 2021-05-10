@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import {Auth} from '@/utils/auth'
+import { Auth } from '@/utils/auth'
 
 const Login = import('@/views/Login')
+const Home = import('@/views/Home')
 
 Vue.use(VueRouter)
 
@@ -13,8 +14,13 @@ export const routes = [
     component: () => Login
   },
   {
+    path: '/home/',
+    name: 'home',
+    component: () => Home
+  },
+  {
     path: '*',
-    redirect: '/'
+    redirect: '/home'
   }
 ]
 

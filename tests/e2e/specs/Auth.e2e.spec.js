@@ -2,19 +2,16 @@ describe('<AttendanceUpdate />', () => {
   const baseUrl = Cypress.env('host')
   const apiServer = Cypress.env('api_server')
 
-  it('Should redirect to /atendimentos after login', () => {
-    cy.intercept('GET', `${apiServer}/attendances/`, {}).as('attendances')
-    cy.intercept('GET', `${apiServer}/attendance-statuses/`, {}).as(
-      'attendanceStatuses'
-    )
+  it('Should redirect to /home after login', () => {
+    cy.intercept('GET', `${apiServer}/vue-scaffold/`, {}).as('vueScaffold')
 
     cy.visit(`${baseUrl}/login`)
     cy.login()
 
-    cy.location('pathname').should('include', '/atendimentos')
+    cy.location('pathname').should('include', '/home')
   })
 
-  it('Should not redirect to /attendances if credentials are invalid', () => {
+  it('Should not redirect to /home if credentials are invalid', () => {
     cy.visit(`${baseUrl}/login`)
     cy.loginInvalid()
 
@@ -36,9 +33,9 @@ describe('<AttendanceUpdate />', () => {
   })
 
   it('Should logout if status code is 401', () => {
-    cy.intercept('GET', `${apiServer}/attendances/`, {
+    cy.intercept('GET', `${apiServer}/vue-scaffold/`, {
       statusCode: 401
-    }).as('attendances')
+    }).as('vueScaffold')
 
     cy.visit(`${baseUrl}/login`)
     cy.login()

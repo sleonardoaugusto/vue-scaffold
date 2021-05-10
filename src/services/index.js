@@ -1,7 +1,8 @@
 import axios from 'axios'
 import AuthService from './auth'
 import Qs from 'qs'
-import {Auth} from '@/utils/auth'
+import { Auth } from '@/utils/auth'
+import VueScaffold from './vue-scaffold'
 
 const token = localStorage.getItem('token') || undefined
 
@@ -25,5 +26,6 @@ httpClient.interceptors.response.use(
 )
 
 export default {
-  auth: AuthService(httpClient)
+  auth: AuthService(httpClient),
+  vueScaffold: VueScaffold(httpClient)
 }
